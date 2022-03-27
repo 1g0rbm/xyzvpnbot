@@ -16,8 +16,6 @@ bot.on('text', (ctx) => {
   ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`)
 })
 
-console.log(process.env.TELEGRAM_WEBHOOK_URL)
-
 bot.launch({
   webhook: {
     domain: process.env.TELEGRAM_WEBHOOK_URL,
