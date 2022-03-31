@@ -1,5 +1,5 @@
 import { DataTypes, Model, } from 'sequelize'
-import { sequelize } from '.'
+import { sequelize } from '../init'
 
 interface UserInterface {
   id: number,
@@ -14,7 +14,7 @@ interface UserInstance extends Model<UserInterface>, UserInterface {
 }
 
 const User = sequelize.define<UserInstance>(
-  'User',
+  'users',
   {
     id: {
       type: DataTypes.INTEGER,

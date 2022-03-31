@@ -1,6 +1,5 @@
-import { initApp } from './init'
-
-const { bot, sequelize } = initApp()
+import { bot } from './init'
+import User from './models/User';
 
 bot.command('quit', (ctx) => {
   // Explicit usage
@@ -10,10 +9,27 @@ bot.command('quit', (ctx) => {
   ctx.leaveChat()
 })
 
-bot.on('text', (ctx) => {
-  console.log(ctx)
-  // Explicit usage
-  ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`)
+bot.start(async (ctx) => {
+  const { message: { from } } = ctx
+  const user = await User.findOrCreate({
+    where: { 
+      id: from.id,
+      username: from.username,
+      firstName: from.first_name,
+      lastName: from.last_name,
+    }
+  })
+
+  const username = from.first_name ?? from.username
+
+  ctx.reply(`Hi, ${username}`)
+})
+
+bot.help((ctx) => {
+  ctx.reply('Help message will be here')
+})
+bot.command('vpn', async (ctx) => {
+  ctx.reply('VPN settings will be here')
 })
 
 bot.launch({
