@@ -47,6 +47,9 @@ const checkAuthToken = (): boolean => {
   return true
 }
 
+/**
+ * Create auth token for VPN server api or just return it if it already exists
+ */
 export const apiAuth = async (): Promise<authTokenType> => {
   if (checkAuthToken()) {
     return authToken
@@ -85,11 +88,7 @@ export const apiAuth = async (): Promise<authTokenType> => {
 }
 
 /**
- * 
- * @param username 
- * @param password 
- *
- * @returns Promise<vpnUserCredentialsType
+ * Create user on vpn server or return data if user already exist
  */
 export const createVpnUser = async (username: string, password: string): Promise<vpnUserCredentialsType> => {
   const { token } = await apiAuth()
@@ -101,12 +100,12 @@ export const createVpnUser = async (username: string, password: string): Promise
   }
 
   const url = createUrl(
-    '/APIAuthToken',
+    '/CreateUser',
     {
       AuthToken: token,
       PRODUCT_NAME: 'MODULE_NAME',
       domainName: process.env.VPN_API_DOMAIN_NAME,
-      inputFormat: JSON.stringify(userCredentials)
+      inputFormat: JSON.stringify([userCredentials])
     }
   )
 

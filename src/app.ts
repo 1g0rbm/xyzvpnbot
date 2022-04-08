@@ -4,6 +4,7 @@ import { URL } from 'url'
 import User from './models/User'
 import logger from './utils/loggger/logger';
 import { apiAuth, createVpnUser } from './utils/api/vpnServerApi';
+import generateRandomString from './utils/randomString';
 
 try {
   bot.command('quit', (ctx) => {
@@ -46,7 +47,7 @@ try {
   })
   
   bot.command('create_account', async (ctx) => {
-    const {username, password} = await createVpnUser(ctx.from.username, '123')
+    const {username, password} = await createVpnUser(ctx.from.username, generateRandomString(8))
   
     ctx.reply(`Your vpn account credentials: login: ${username}, password: ${password}`)
   })
