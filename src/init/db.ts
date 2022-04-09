@@ -29,4 +29,4 @@ const sequelize = new Sequelize(
   }
 )
 
-export { Sequelize, sequelize }
+export { Sequelize, sequelize, dbConfig }
