@@ -9,7 +9,7 @@ const generateRandomNumber = (min: number = 0, max: number = 10): number => {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-const generateRandomString = (length: number = 5): string => {
+const generatePassword = (length: number = 5): string => {
   let result: string = ''
   for (let i = 0; i < length; i++) {
     const templateNumber = i < 4 ? i : generateRandomNumber(0, 4)
@@ -20,4 +20,4 @@ const generateRandomString = (length: number = 5): string => {
   return result
 }
 
-export default generateRandomString
+export default generatePassword
