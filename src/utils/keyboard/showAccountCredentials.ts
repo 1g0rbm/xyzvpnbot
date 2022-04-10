@@ -1,14 +1,23 @@
 import { Markup } from 'telegraf'
+import { t } from 'i18next'
 
-const SHOW_ACCOUNT_CREDENTIALS_BUTTON = '🗄️ Show account credentials'
+let showAccountButton = null
+const getShowAccountButton = () =>  {
+  if (showAccountButton === null) {
+    showAccountButton = t('button.show_vpn_account_data')
+  }
 
-const showAccountCredentialsKeyboard = Markup
-  .keyboard([
-    [SHOW_ACCOUNT_CREDENTIALS_BUTTON]
-  ])
-  .resize()
-
-export {
-  showAccountCredentialsKeyboard,
-  SHOW_ACCOUNT_CREDENTIALS_BUTTON
+  return showAccountButton
 }
+
+const getShowAccountKeyboard = () => {
+  const keyboard = Markup
+    .keyboard([
+      [getShowAccountButton()]
+    ])
+    .resize()
+
+  return keyboard
+}
+
+export { getShowAccountButton, getShowAccountKeyboard }
