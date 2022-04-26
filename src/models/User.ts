@@ -1,4 +1,4 @@
-import { DataTypes, Model, } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../init'
 
 enum UserStatus {
@@ -13,12 +13,14 @@ interface UserInterface {
   username: string,
   firstName: string,
   lastName: string,
-  status: UserStatus
+  status: UserStatus,
 }
 
 interface UserInstance extends Model<UserInterface>, UserInterface {
   createdAt?: Date;
   updatedAt?: Date;
+  isNew: () => boolean;
+  hasVpn: () => boolean;
 }
 
 const User = sequelize.define<UserInstance>(
@@ -53,6 +55,14 @@ const User = sequelize.define<UserInstance>(
     }
   }
 )
+
+User.prototype.isNew = function(): boolean {
+  return this.status === UserStatus.DO_NOT_HAVE_VPN
+}
+
+User.prototype.hasVpn = function(): boolean {
+  return this.status !== UserStatus.DO_NOT_HAVE_VPN
+}
 
 export { UserStatus, UserInstance }
 

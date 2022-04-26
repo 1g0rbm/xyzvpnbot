@@ -3,9 +3,11 @@ import User, { UserStatus } from './models/User'
 import logger from './utils/loggger/logger'
 import { createVpnUser } from './utils/api/vpnServerApi'
 import generatePassword from './utils/generatePassword'
-import { getCreateAccountButton, getCreateAccountKeyboard } from './utils/keyboard/createAccount'
-import { getShowAccountButton, getShowAccountKeyboard } from './utils/keyboard/showAccountCredentials'
+import { getCreateAccountButton } from './utils/keyboard/createAccount'
+import { getShowAccountKeyboard } from './utils/keyboard/showAccountCredentials'
 import i18n from './init/i18n';
+import startAction from './action/startAction';
+import helpAction from './action/helpAction'
 
 const run = async () => {
   await i18n()
@@ -18,29 +20,11 @@ const run = async () => {
       // Using context shortcut
       ctx.leaveChat()
     })
-  
-    bot.start(async (ctx) => {
-      const { message: { from } } = ctx
-      const [user] = await User.findOrCreate({
-        where: { 
-          id: from.id,
-          username: from.username,
-          firstName: from.first_name,
-          lastName: from.last_name,
-        }
-      })
 
-      const keyboard = user.status === UserStatus.DO_NOT_HAVE_VPN 
-        ? getCreateAccountKeyboard()
-        : getShowAccountKeyboard()
-  
-      ctx.reply(`Hi, ${user.username}`, keyboard)
-    })
-    
-    bot.help((ctx) => {
-      ctx.reply('Help message will be here')
-    })
-    
+    bot.start(startAction)
+
+    bot.help(helpAction)
+
     bot.command('vpn', async (ctx) => {
       ctx.reply('VPN settings will be here')
     })
