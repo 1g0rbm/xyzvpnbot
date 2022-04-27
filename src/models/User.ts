@@ -11,6 +11,7 @@ enum UserStatus {
 interface UserInterface {
   id: number,
   username: string,
+  password: string,
   firstName: string,
   lastName: string,
   status: UserStatus,
@@ -37,6 +38,11 @@ const User = sequelize.define<UserInstance>(
       type: DataTypes.STRING,
       unique: true,
       allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: true
     },
     firstName: {
       type: DataTypes.STRING,

@@ -46,6 +46,7 @@ const run = async () => {
       })
   
       user.status = UserStatus.HAVE_VPN
+      user.password = password
   
       await user.save()
   

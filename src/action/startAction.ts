@@ -19,11 +19,11 @@ const startAction = async (ctx: Context) => {
       t('message.geetings_for_new') :
       t('message.geetings_for_old', {
         login: user.username,
-        password: '******',
+        password: user.password,
         common_key: 'common_key',
       })
 
-  ctx.reply(replyMessage, keyboard)
+  ctx.replyWithHTML(replyMessage, keyboard)
 }
 
 const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstance> => {
