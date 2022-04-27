@@ -1,13 +1,11 @@
 import { bot } from './init'
-import User, { UserStatus } from './models/User'
 import logger from './utils/loggger/logger'
-import { createVpnUser } from './utils/api/vpnServerApi'
-import generatePassword from './utils/generatePassword'
-import { getCreateAccountButton } from './utils/keyboard/createAccount'
-import { getShowAccountKeyboard } from './utils/keyboard/showAccountCredentials'
+import { t } from 'i18next'
 import i18n from './init/i18n';
 import startAction from './action/startAction';
 import helpAction from './action/helpAction'
+import createAccountAction from './action/createAccountAction'
+import showAccountData from './action/showAccountDataAction';
 
 const run = async () => {
   await i18n()
@@ -29,34 +27,14 @@ const run = async () => {
       ctx.reply('VPN settings will be here')
     })
     
+    bot.hears(t('button.create_vpn_account'), createAccountAction)
+    bot.hears(t('button.show_vpn_account_data'), showAccountData)
+
     bot.launch({
       webhook: {
         domain: process.env.TELEGRAM_WEBHOOK_URL,
         port: Number(process.env.TELEGRAM_PORT)
       }
-    })
-
-    bot.hears(getCreateAccountButton(), async (ctx) => {
-      const {username, password} = await createVpnUser(ctx.from.username, generatePassword(8))
-  
-      const user = await User.findOne({
-        where: { 
-          id: ctx.from.id,
-        }
-      })
-  
-      user.status = UserStatus.HAVE_VPN
-      user.password = password
-  
-      await user.save()
-  
-      const messageText = [
-        'Your vpn account credentials: ',
-        `login: <b>${username}</b>`,
-        `password: <b>${password}</b>`
-      ]
-  
-      ctx.replyWithHTML(messageText.join('\n'), getShowAccountKeyboard())
     })
   
     // Enable graceful stop
