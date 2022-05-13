@@ -8,6 +8,8 @@ import createAccountAction from './action/createAccountAction'
 import showAccountData from './action/showAccountDataAction';
 
 const run = async () => {
+  logger.info('Applocation is running')
+  logger.info(process.env.TELEGRAM_WEBHOOK_URL)
   await i18n()
 
   try {
