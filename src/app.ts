@@ -32,7 +32,8 @@ const run = async () => {
 
     bot.launch({
       webhook: {
-        domain: process.env.TELEGRAM_WEBHOOK_URL,
+        domain: process.env.TELEGRAM_WEBHOOK_URL ?? null,
+        hookPath: process.env.TELEGRAM_WEBHOOK_PATH ?? null,
         port: Number(process.env.TELEGRAM_PORT)
       }
     })
