@@ -8,8 +8,6 @@ import createAccountAction from './action/createAccountAction'
 import showAccountData from './action/showAccountDataAction';
 
 const run = async () => {
-  logger.info('Applocation is running')
-  logger.info(process.env.TELEGRAM_WEBHOOK_URL)
   await i18n()
 
   try {
@@ -19,11 +17,6 @@ const run = async () => {
     
       // Using context shortcut
       ctx.leaveChat()
-    })
-
-    bot.use((ctx) => {
-      console.log('UUUSE')
-      console.log(ctx.message)
     })
 
     bot.start(startAction)
@@ -39,8 +32,7 @@ const run = async () => {
 
     bot.launch({
       webhook: {
-        domain: process.env.TELEGRAM_WEBHOOK_URL ?? null,
-        hookPath: process.env.TELEGRAM_WEBHOOK_PATH ?? null,
+        domain: process.env.TELEGRAM_WEBHOOK_URL,
         port: Number(process.env.TELEGRAM_PORT)
       }
     })

@@ -3,7 +3,6 @@ import { Context, Markup } from 'telegraf'
 import User from '../models/User'
 
 const showAccountData = async (ctx: Context) => {
-  console.log('SHOW ACCOUNT ACTION')
   const user = await User.findOne({
     where: { 
       id: ctx.from.id,

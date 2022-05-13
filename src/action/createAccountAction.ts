@@ -6,8 +6,6 @@ import User, { UserStatus } from '../models/User'
 
 const createAccountAction = async (ctx: Context) => {
   const {username, password} = await createVpnUser(ctx.from.username, generatePassword(8))
-  
-  console.log('CREATE ACCOUNT ACTION')
 
   const user = await User.findOne({
     where: { 
