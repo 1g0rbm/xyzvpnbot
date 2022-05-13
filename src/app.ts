@@ -21,6 +21,11 @@ const run = async () => {
       ctx.leaveChat()
     })
 
+    bot.use((ctx) => {
+      console.log('UUUSE')
+      console.log(ctx.message)
+    })
+
     bot.start(startAction)
 
     bot.help(helpAction)
