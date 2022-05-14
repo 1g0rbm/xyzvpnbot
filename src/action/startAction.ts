@@ -21,7 +21,8 @@ const startAction = async (ctx: Context) => {
       t('message.geetings_for_old', {
         login: user.username,
         password: user.password,
-        common_key: 'common_key',
+        common_key: process.env.VPN_COMMON_KEY,
+        ip_address: process.env.VPN_IP
       })
 
   ctx.replyWithHTML(replyMessage, keyboard)

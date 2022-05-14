@@ -14,15 +14,18 @@ Your account's credentials:
 Login: {{ login }}
 Password: {{ password }}
 Common key: {{ common_key }}
+Server's ip-address: <b>{{ ip_address }}</b>
 If there are any problems with setting up device, then try to press the button "Instructions". 👇`,
       account_data: `Your account's data:
 Login: <b>{{ login }}</b>
 Password: <b>{{ password }}</b>
-Common key: <b>{{ common_key }}</b>`,
+Common key: <b>{{ common_key }}</b>
+Server's ip-address: <b>{{ ip_address }}</b>`,
       new_account: `Your account was created:
 Login: <b>{{ login }}</b>
 Password: <b>{{ password }}</b>
-Common key: <b>{{ common_key }}</b>`,
+Common key: <b>{{ common_key }}</b>
+Server's ip-address: <b>{{ ip_address }}</b>`,
     },
   }
 }

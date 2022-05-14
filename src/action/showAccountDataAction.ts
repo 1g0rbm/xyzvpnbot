@@ -20,7 +20,8 @@ const showAccountData = async (ctx: Context) => {
       {
         login: user.username,
         password: user.password,
-        common_key: 'common_key',
+        common_key: process.env.VPN_COMMON_KEY,
+        ip_address: process.env.VPN_IP
       }
     ),
     keyboard
