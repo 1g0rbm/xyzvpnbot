@@ -21,10 +21,12 @@
   "author": "1g0rbm",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.182",
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "i18next": "^21.6.15",
     "i18next-locize-backend": "^5.0.1",
+    "lodash": "^4.17.21",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "pino": "^7.9.2",

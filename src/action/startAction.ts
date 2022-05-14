@@ -2,6 +2,7 @@ import { t } from 'i18next'
 import { Context, Markup } from 'telegraf'
 import { User as TelegramUser } from 'telegraf/typings/core/types/typegram'
 import User, { UserInstance } from '../models/User'
+import _ from 'lodash'
 
 const startAction = async (ctx: Context) => {
   const user = await findOrCreateUser(ctx.from)
@@ -30,13 +31,29 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
   const [user] = await User.findOrCreate({
     where: { 
       id: telegramUser.id,
-      username: telegramUser.username,
+      username: getUsername(telegramUser),
       firstName: telegramUser.first_name,
       lastName: telegramUser.last_name,
     }
   })
 
   return user
+}
+
+function getUsername(telegramUser: TelegramUser): string {
+  if (telegramUser.username) {
+    return telegramUser.username
+  }
+
+  if (telegramUser.first_name) {
+    return telegramUser.first_name
+  }
+
+  if (telegramUser.last_name) {
+    return telegramUser.last_name
+  }
+
+  return telegramUser.id.toString()
 }
 
 export default startAction

@@ -37,7 +37,7 @@ const run = async () => {
         port: Number(process.env.TELEGRAM_PORT)
       }
     })
-  
+
     // Enable graceful stop
     process.once('SIGINT', () => bot.stop('SIGINT'))
     process.once('SIGTERM', () => bot.stop('SIGTERM'))
