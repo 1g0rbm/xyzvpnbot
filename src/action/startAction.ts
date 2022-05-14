@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { Context, Markup } from 'telegraf'
 import { User as TelegramUser } from 'telegraf/typings/core/types/typegram'
-import User, { UserInstance } from '../models/User'
+import User, { UserInstance, UserStatus } from '../models/User'
 import _ from 'lodash'
 
 const startAction = async (ctx: Context) => {
@@ -35,11 +35,22 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
     }
   })
 
-  user.username = getUsername(telegramUser)
-  user.firstName = telegramUser.first_name
-  user.lastName = telegramUser.last_name
+  const hasDifference = Object.keys(telegramUser).reduce((acc, key) => {
+    if (acc) {
+      return acc
+    }
 
-  await user.save()
+    return telegramUser[key] !== user[_.camelCase(key)]
+  }, false)
+
+  if (hasDifference) {
+    user.username = getUsername(telegramUser)
+    user.firstName = telegramUser.first_name
+    user.lastName = telegramUser.last_name
+    user.status = UserStatus.DO_NOT_HAVE_VPN
+
+    await user.save()
+  }
 
   return user
 }
