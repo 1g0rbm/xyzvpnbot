@@ -32,6 +32,12 @@ Password: <b>{{ password }}</b>
 Common key: <b>{{ common_key }}</b>
 Server's ip-address: <b>{{ ip_address }}</b>`,
 instructions: `I dont give you a special app fot VPN, so you should a bit work to get it.`,
+help: `To prepare VPN on your device follow instructions:
+1) for widows: https://telegra.ph/Nastrojka-VPN-na-Windows-03-31
+2) for android: https://telegra.ph/Nastrojka-VPN-na-Android-05-06
+
+If vpn is configured on yor device, but you can't connect, then try using the /start command.
+If you changed your telegram username, then I reconfigure VPN settings.`,
     },
   }
 }
