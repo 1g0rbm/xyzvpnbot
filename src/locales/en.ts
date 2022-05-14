@@ -2,7 +2,12 @@ const en = {
   translation: {
     button: {
       create_vpn_account: '🕳️ Get VPN account 🐇',
-      show_vpn_account_data: '🗄️ Show account credentials'
+      show_vpn_account_data: '🗄️ Show account credentials',
+      show_vpn_instructions: '📃 Instructions'
+    },
+    label: {
+      instruction_windows: 'Instruction for windows',
+      instruction_android: 'Instruction for android',
     },
     message: {
       geetings_for_new: `Hi!
@@ -26,6 +31,7 @@ Login: <b>{{ login }}</b>
 Password: <b>{{ password }}</b>
 Common key: <b>{{ common_key }}</b>
 Server's ip-address: <b>{{ ip_address }}</b>`,
+instructions: `I dont give you a special app fot VPN, so you should a bit work to get it.`,
     },
   }
 }

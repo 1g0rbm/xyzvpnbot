@@ -19,8 +19,10 @@ const createAccountAction = async (ctx: Context) => {
   await user.save()
 
   const keyboard = Markup
-    .keyboard([[t('button.show_vpn_account_data')]])
-    .oneTime()
+    .keyboard([
+      [t('button.show_vpn_account_data')],
+      [t('button.show_vpn_instructions')]
+    ])
     .resize()
 
   ctx.replyWithHTML(

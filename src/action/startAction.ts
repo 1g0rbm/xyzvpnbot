@@ -8,12 +8,12 @@ const startAction = async (ctx: Context) => {
   const user = await findOrCreateUser(ctx.from)
 
   const buttons = [
-    user.hasVpn() ? [t('button.show_vpn_account_data')] : [t('button.create_vpn_account')]
-  ]
+    user.hasVpn() ? [t('button.show_vpn_account_data')] : [t('button.create_vpn_account')],
+    user.hasVpn() ? [t('button.show_vpn_instructions')] : null,
+  ].filter(line => !!line)
 
   const keyboard = Markup
     .keyboard(buttons)
-    .oneTime()
     .resize()
 
     const replyMessage = !user.hasVpn() ?

@@ -6,6 +6,7 @@ import startAction from './action/startAction';
 import helpAction from './action/helpAction'
 import createAccountAction from './action/createAccountAction'
 import showAccountData from './action/showAccountDataAction';
+import instructionAction from './action/instructionAction';
 
 const run = async () => {
   await i18n()
@@ -29,6 +30,7 @@ const run = async () => {
     
     bot.hears(t('button.create_vpn_account'), createAccountAction)
     bot.hears(t('button.show_vpn_account_data'), showAccountData)
+    bot.hears(t('button.show_vpn_instructions'), instructionAction)
 
     bot.launch({
       webhook: {

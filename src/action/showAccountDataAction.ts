@@ -9,9 +9,13 @@ const showAccountData = async (ctx: Context) => {
     }
   })
 
+  const buttons = [
+    [t('button.show_vpn_account_data')],
+    user.hasVpn() ? [t('button.show_vpn_instructions')] : null,
+  ].filter(line => !!line)
+
   const keyboard = Markup
-    .keyboard([[t('button.show_vpn_account_data')]])
-    .oneTime()
+    .keyboard(buttons)
     .resize()
 
   ctx.replyWithHTML(
