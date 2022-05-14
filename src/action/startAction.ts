@@ -38,6 +38,12 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
     }
   })
 
+  user.username = getUsername(telegramUser)
+  user.firstName = telegramUser.first_name
+  user.lastName = telegramUser.last_name
+
+  await user.save()
+
   return user
 }
 
