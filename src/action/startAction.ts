@@ -35,14 +35,7 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
     }
   })
 
-  const hasDifference = Object.keys(telegramUser).reduce((acc, key) => {
-    if (acc) {
-      return acc
-    }
-
-    return telegramUser[key] !== user[_.camelCase(key)]
-  }, false)
-
+  const hasDifference = user.username !== getUsername(telegramUser)
   if (hasDifference) {
     user.username = getUsername(telegramUser)
     user.firstName = telegramUser.first_name
