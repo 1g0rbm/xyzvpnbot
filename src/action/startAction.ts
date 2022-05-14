@@ -32,9 +32,6 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
   const [user] = await User.findOrCreate({
     where: { 
       id: telegramUser.id,
-      username: getUsername(telegramUser),
-      firstName: telegramUser.first_name,
-      lastName: telegramUser.last_name,
     }
   })
 
