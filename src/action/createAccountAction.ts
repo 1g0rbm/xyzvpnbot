@@ -5,13 +5,13 @@ import generatePassword from '../utils/generatePassword'
 import User, { UserStatus } from '../models/User'
 
 const createAccountAction = async (ctx: Context) => {
-  const {username, password} = await createVpnUser(ctx.from.username, generatePassword(8))
-
   const user = await User.findOne({
     where: { 
       id: ctx.from.id,
     }
   })
+
+  const { password } = await createVpnUser(user.username, generatePassword(8))
 
   user.status = UserStatus.HAVE_VPN
   user.password = password

@@ -35,8 +35,6 @@ const findOrCreateUser = async (telegramUser: TelegramUser): Promise<UserInstanc
     }
   })
 
-  console.log(user)
-
   const hasDifference = user.username !== getUsername(telegramUser)
   if (hasDifference) {
     user.username = getUsername(telegramUser)
