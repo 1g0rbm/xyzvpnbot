@@ -73,12 +73,12 @@ export const apiAuth = async (): Promise<authTokenType> => {
 
   const token = data['AuthTicket'] ?? null
   if (token === null) {
-    throw new Error(`${logPrefix} There is no token in response from Url ${url.toString}`)
+    throw new Error(`${logPrefix} There is no token in response from Url ${url.toString()}`)
   }
 
   const validDate = data['ValidDate'] ?? null
   if (validDate === null) {
-    throw new Error(`${logPrefix} There is no validDate in response from Url ${url.toString}`)
+    throw new Error(`${logPrefix} There is no validDate in response from Url ${url.toString()}`)
   }
 
   authToken.token = token
@@ -118,12 +118,12 @@ export const createVpnUser = async (username: string, password: string): Promise
 
   const vpnUsername = data[0]['USER_NAME'] ?? null
   if (vpnUsername === null) {
-    throw new Error(`${logPrefix} There is no USER_NAME in response from Url ${url.toString}`)
+    throw new Error(`${logPrefix} There is no USER_NAME in response from Url ${url.toString()}`)
   }
 
   const vpnPassword = data[0]['USER_PASSWORD'] ?? null
   if (vpnPassword === null) {
-    throw new Error(`${logPrefix} There is no USER_PASSWORD in response from Url ${url.toString}`)
+    throw new Error(`${logPrefix} There is no USER_PASSWORD in response from Url ${url.toString()}`)
   }
 
   return {

@@ -38,6 +38,11 @@ help: `To prepare VPN on your device follow instructions:
 
 If vpn is configured on yor device, but you can't connect, then try using the /start command.
 If you changed your telegram username, then I reconfigure VPN settings.`,
+admin_error_template: `⚠ ALARM ⚠
+There is error:
+{{ message }}`,
+user_error_template: `Oops, something went wrong... 😔
+Try again later.`
     },
   }
 }
