@@ -53,14 +53,6 @@ function getUsername(telegramUser: TelegramUser): string {
     return telegramUser.username
   }
 
-  if (telegramUser.first_name) {
-    return telegramUser.first_name
-  }
-
-  if (telegramUser.last_name) {
-    return telegramUser.last_name
-  }
-
   return telegramUser.id.toString()
 }
 
