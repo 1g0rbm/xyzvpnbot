@@ -42,7 +42,9 @@ admin_error_template: `⚠ ALARM ⚠
 There is error:
 {{ message }}`,
 user_error_template: `Oops, something went wrong... 😔
-Try again later.`
+Try again later.`,
+account_creating: `I need a bit time to create account...
+I'll notice you, when it's done. 😊`
     },
   }
 }

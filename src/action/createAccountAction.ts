@@ -5,6 +5,8 @@ import generatePassword from '../utils/generatePassword'
 import User, { UserStatus } from '../models/User'
 
 const createAccountAction = async (ctx: Context) => {
+  ctx.replyWithHTML(t('message.account_creating'))
+
   const user = await User.findOne({
     where: { 
       id: ctx.from.id,
