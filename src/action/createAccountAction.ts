@@ -27,7 +27,7 @@ const createAccountAction = async (ctx: Context) => {
     ])
     .resize()
 
-  ctx.replyWithHTML(
+  const msg = [
     t(
       'message.new_account',
       {
@@ -37,6 +37,11 @@ const createAccountAction = async (ctx: Context) => {
         ip_address: process.env.VPN_IP
       }
     ),
+    t('message.help')
+  ]
+
+  ctx.replyWithHTML(
+    msg.join('\n\n'),
     keyboard
   )
 }

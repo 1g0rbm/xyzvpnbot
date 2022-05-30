@@ -1,4 +1,4 @@
-init-docker: docker-down docker-pull docker-build docker-up
+start-docker: docker-down docker-pull docker-build docker-up
 
 docker-up:
 	docker-compose --env-file .env up --build -d
